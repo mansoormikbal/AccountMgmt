@@ -1,0 +1,59 @@
+﻿@model AccountMgmt.Models.Transaction
+
+@{
+    ViewData["Title"] = "Transaction";
+}
+@Html.AntiForgeryToken()
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>Transaction</h1>
+        <form asp-action="AddOrEdit" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TransactionId" />
+            <input type="hidden" asp-for="Date" />
+            <div class="form-group">
+                <label asp-for="SourceAccountNumber" class="control-label"></label>
+                <input asp-for="SourceAccountNumber" class="form-control" />
+                <span asp-validation-for="SourceAccountNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DestinationAccountNumber" class="control-label"></label>
+                <input asp-for="DestinationAccountNumber" class="form-control" />
+                <span asp-validation-for="DestinationAccountNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="Amount" class="control-label"></label>
+                    <input asp-for="Amount" class="form-control" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label asp-for="Narration" class="control-label"></label>
+                    <textarea asp-for="Narration" class="form-control" rows="10" cols="40"></textarea>
+                    @* <input asp-for="Narration" class="form-control"  /> *@
+                    <span asp-validation-for="Narration" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary w-100" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <a asp-action="Index" class="btn btn-secondary  w-100">View All</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
